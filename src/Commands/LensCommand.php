@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Kiriamcf\Lens\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LensCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'lens';
 
     public $description = 'My command';
 
