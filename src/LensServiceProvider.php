@@ -2,9 +2,9 @@
 
 namespace Kiriamcf\Lens;
 
+use Kiriamcf\Lens\Commands\LensCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Kiriamcf\Lens\Commands\LensCommand;
 
 class LensServiceProvider extends PackageServiceProvider
 {
