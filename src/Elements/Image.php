@@ -13,8 +13,6 @@ class Image implements HtmlElement
 {
     /**
      * Return the HTML element name.
-     * 
-     * @return string
      */
     public static function name(): string
     {
@@ -23,9 +21,7 @@ class Image implements HtmlElement
 
     /**
      * Return the needed features for this field.
-     * 
-     * @return array
-     */ 
+     */
     public static function neededFeatures(): array
     {
         return ['src', 'alt'];

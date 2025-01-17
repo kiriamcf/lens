@@ -6,29 +6,24 @@ namespace Kiriamcf\Lens;
 
 use Illuminate\Support\Facades\File;
 use Kiriamcf\Lens\Enums\FileExtension;
-use Kiriamcf\Lens\Enums\HtmlElement;
 use Kiriamcf\Lens\Services\FileInspector;
 use SplFileInfo;
 
 /**
  * @internal
  */
-final readonly class Lens 
+final readonly class Lens
 {
     /**
      * Creates a new Lens instance.
-     * 
-     * @param array $extensions
      */
     public function __construct(private array $extensions)
     {
-        // 
+        //
     }
 
     /**
      * Begin processing the files.
-     * 
-     * @return void
      */
     public function handle(): void
     {
@@ -38,9 +33,6 @@ final readonly class Lens
 
     /**
      * Process the given folder.
-     * 
-     * @param string $folder
-     * @return void
      */
     private function processFolder(string $folder): void
     {
@@ -54,9 +46,6 @@ final readonly class Lens
 
     /**
      * Process the given folder.
-     * 
-     * @param SplFileInfo $file
-     * @return void
      */
     private function processFile(SplFileInfo $file): void
     {
