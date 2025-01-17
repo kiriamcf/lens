@@ -1,6 +1,5 @@
 <?php
 
-// config for Kiriamcf/Lens
 return [
-
+    'resource_folders' => ['views']
 ];
