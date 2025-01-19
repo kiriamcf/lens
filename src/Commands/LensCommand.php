@@ -16,7 +16,7 @@ class LensCommand extends Command
     {
         // Ask for extensions to process
 
-        $lens = new Lens([FileExtension::BLADE]);
+        $lens = new Lens($this->output, [FileExtension::BLADE]);
 
         $lens->handle();
 

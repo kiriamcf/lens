@@ -9,14 +9,14 @@ use Kiriamcf\Lens\Contracts\HtmlElement;
 /**
  * @internal
  */
-class Image implements HtmlElement
+class Anchor implements HtmlElement
 {
     /**
      * Return the HTML element name.
      */
     public static function name(): string
     {
-        return 'img';
+        return 'a';
     }
 
     /**
@@ -24,6 +24,6 @@ class Image implements HtmlElement
      */
     public static function neededAttributes(): array
     {
-        return ['src', 'alt'];
+        return ['href'];
     }
 }

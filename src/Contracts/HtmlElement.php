@@ -15,7 +15,7 @@ interface HtmlElement
     public static function name(): string;
 
     /**
-     * Return the needed features for this field.
+     * Return the needed attributes for this field.
      */
-    public static function neededFeatures(): array;
+    public static function neededAttributes(): array;
 }
