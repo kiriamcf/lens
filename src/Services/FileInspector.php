@@ -15,6 +15,7 @@ use SplFileInfo;
 final class FileInspector
 {
     private DOMDocument $dom;
+
     private array $logs = [];
 
     /**
@@ -35,7 +36,7 @@ final class FileInspector
         collect(HtmlElement::cases())
             ->mapWithKeys(fn (HtmlElement $element) => [$element->value => $this->findDomElements($element)])
             ->filter()
-            ->each(fn (DomNodeList $nodes , string $element) => $this->analyzeElement($nodes, $element));
+            ->each(fn (DomNodeList $nodes, string $element) => $this->analyzeElement($nodes, $element));
     }
 
     /**
@@ -80,9 +81,9 @@ final class FileInspector
                     return collect(AttributeFormat::cases())
                         ->contains(fn (AttributeFormat $format) => $node->hasAttribute(str_replace('{attribute}', $attribute, $format->toHtml())));
                 });
-    
+
                 if ($missingAttributes->isNotEmpty()) {
-                    array_push($this->logs, "The {$elementClass::name()} element in {$this->file->getFilename()} line {$node->getLineNo()} is missing the following attributes: " . $missingAttributes->implode(', '));
+                    array_push($this->logs, "The {$elementClass::name()} element in {$this->file->getFilename()} line {$node->getLineNo()} is missing the following attributes: ".$missingAttributes->implode(', '));
                 }
             });
     }
