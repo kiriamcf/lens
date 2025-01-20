@@ -6,7 +6,7 @@ namespace Kiriamcf\Lens\Enums;
 
 /**
  * @internal
- * 
+ *
  * @see https://laravel.com/docs/11.x/blade#escaping-attribute-rendering
  * @see https://vuejs.org/guide/essentials/class-and-style.html
  * @see https://alpinejs.dev/directives/bind
