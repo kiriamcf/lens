@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\File;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Services\FileInspector;
 use SplFileInfo;
-use Symfony\Component\Console\Output\OutputInterface;
+use function Laravel\Prompts\error;
 
 /**
  * @internal
@@ -19,7 +19,7 @@ final readonly class Lens
     /**
      * Creates a new Lens instance.
      */
-    public function __construct(private OutputInterface $output, private array $extensions)
+    public function __construct(private array $extensions)
     {
         //
     }
@@ -29,7 +29,7 @@ final readonly class Lens
      */
     public function handle(): void
     {
-        collect(config('lens.resource_folders'))
+        collect(config('lens.folders'))
             ->each(fn (string $folder) => $this->processFolder($folder));
     }
 
@@ -38,7 +38,7 @@ final readonly class Lens
      */
     private function processFolder(string $folder): void
     {
-        collect(File::allFiles(resource_path($folder)))
+        collect(File::allFiles($folder))
             ->filter(function (SplFileInfo $file) {
                 return collect($this->extensions)
                     ->contains(fn (FileExtension $extension) => str_ends_with($file->getFilename(), $extension->value));
@@ -65,6 +65,6 @@ final readonly class Lens
      */
     private function report(Collection $logs): void
     {
-        $logs->each(fn (string $log) => $this->output->writeLn("<info>{$log}</info>"));
+        $logs->each(fn (string $log) => error($log));
     }
 }

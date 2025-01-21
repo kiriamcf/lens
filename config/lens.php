@@ -1,5 +1,7 @@
 <?php
 
 return [
-    'resource_folders' => ['views'],
+    'folders' => [
+        './resources/views/'
+    ],
 ];

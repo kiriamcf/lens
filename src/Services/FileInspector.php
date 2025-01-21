@@ -83,7 +83,7 @@ final class FileInspector
                 });
 
                 if ($missingAttributes->isNotEmpty()) {
-                    array_push($this->logs, "The {$elementClass::name()} element in {$this->file->getFilename()} line {$node->getLineNo()} is missing the following attributes: ".$missingAttributes->implode(', '));
+                    array_push($this->logs, "The {$elementClass::name()} element in {$this->file->getPathname()} line {$node->getLineNo()} is missing the following attributes: ".$missingAttributes->implode(', '));
                 }
             });
     }

@@ -5,6 +5,8 @@ namespace Kiriamcf\Lens\Commands;
 use Illuminate\Console\Command;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Lens;
+use function Laravel\Prompts\multiselect;
+use function Laravel\Prompts\info;
 
 class LensCommand extends Command
 {
@@ -14,13 +16,17 @@ class LensCommand extends Command
 
     public function handle(): int
     {
-        // Ask for extensions to process
+        $extensions = array_map(fn (string $extension) => FileExtension::from($extension),
+            multiselect(
+                label: 'What file extensions would you like to inspect?',
+                options: FileExtension::commandArray(),
+                default: [FileExtension::BLADE->value],
+            )
+        );
 
-        $lens = new Lens($this->output, [FileExtension::BLADE]);
+        $lens = new Lens($extensions);
 
         $lens->handle();
-
-        // Show results
 
         // Ask if they want to fix the issues
 
@@ -28,7 +34,7 @@ class LensCommand extends Command
 
         // Show results
 
-        $this->comment('All done');
+        info('All files containing the selected extensions have been analyzed.');
 
         return self::SUCCESS;
     }
