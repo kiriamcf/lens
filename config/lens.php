@@ -2,6 +2,6 @@
 
 return [
     'folders' => [
-        './resources/views/'
+        './resources/views/',
     ],
 ];

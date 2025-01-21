@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Services\FileInspector;
 use SplFileInfo;
+
 use function Laravel\Prompts\error;
 
 /**
