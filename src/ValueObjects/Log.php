@@ -13,11 +13,11 @@ final readonly class Log
      * Creates a new Log instance.
      */
     public function __construct(
-        private string $path, 
+        private string $path,
         private int $line,
         private string $element,
         private array $attributes,
-    ) { }
+    ) {}
 
     /**
      * Get the path of the file.
