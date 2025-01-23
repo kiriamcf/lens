@@ -6,10 +6,12 @@ namespace Kiriamcf\Lens\Services;
 
 use DOMDocument;
 use DOMElement;
+use DOMNode;
 use DOMNodeList;
 use Illuminate\Support\Collection;
 use Kiriamcf\Lens\Enums\AttributeFormat;
 use Kiriamcf\Lens\Enums\HtmlElement;
+use Kiriamcf\Lens\ValueObjects\Log;
 use SplFileInfo;
 
 final class FileInspector
@@ -75,6 +77,7 @@ final class FileInspector
     private function analyzeElement(DomNodeList $nodes, string $elementClass): void
     {
         collect(iterator_to_array($nodes))
+            ->filter(fn (DOMNode $node) => $node instanceof DOMElement)
             ->each(function (DOMElement $node) use ($elementClass) {
                 $neededAttributes = collect($elementClass::neededAttributes());
                 $missingAttributes = $neededAttributes->reject(function (string $attribute) use ($node) {
@@ -83,7 +86,12 @@ final class FileInspector
                 });
 
                 if ($missingAttributes->isNotEmpty()) {
-                    array_push($this->logs, "The {$elementClass::name()} element in {$this->file->getPathname()} line {$node->getLineNo()} is missing the following attributes: ".$missingAttributes->implode(', '));
+                    array_push($this->logs, new Log(
+                        element: $elementClass::name(),
+                        path: $this->file->getPathname(),
+                        line: $node->getLineNo(),
+                        attributes: $missingAttributes->toArray(),
+                    ));
                 }
             });
     }

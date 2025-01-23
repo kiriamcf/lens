@@ -5,9 +5,8 @@ namespace Kiriamcf\Lens\Commands;
 use Illuminate\Console\Command;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Lens;
-
-use function Laravel\Prompts\info;
 use function Laravel\Prompts\multiselect;
+use function Laravel\Prompts\info;
 
 class LensCommand extends Command
 {
@@ -25,7 +24,7 @@ class LensCommand extends Command
             )
         );
 
-        $lens = new Lens($extensions);
+        $lens = new Lens(output: $this->output, extensions: $extensions);
 
         $lens->handle();
 

@@ -8,7 +8,9 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Services\FileInspector;
+use Kiriamcf\Lens\ValueObjects\Log;
 use SplFileInfo;
+use Symfony\Component\Console\Output\OutputInterface;
 
 use function Laravel\Prompts\error;
 
@@ -20,7 +22,7 @@ final readonly class Lens
     /**
      * Creates a new Lens instance.
      */
-    public function __construct(private array $extensions)
+    public function __construct(private OutputInterface $output, private array $extensions)
     {
         //
     }
@@ -66,6 +68,11 @@ final readonly class Lens
      */
     private function report(Collection $logs): void
     {
-        $logs->each(fn (string $log) => error($log));
+        $logs->each(function (Log $log) {
+            $this->output->writeln("<info>Warning in file: <comment>{$log->path()}</comment> (Line: {$log->line()})</info>");
+            $this->output->writeln("<info> - Element: </info> <comment>{$log->element()}</comment>");
+            $this->output->writeln("<info> - Missing attributes: </info> <comment>" . implode(', ', $log->attributes()) . "</comment>");
+            $this->output->writeln('');
+        });
     }
 }
