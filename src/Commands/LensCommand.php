@@ -22,6 +22,7 @@ class LensCommand extends Command
                 label: 'What file extensions would you like to inspect?',
                 options: FileExtension::commandArray(),
                 default: [FileExtension::BLADE->value],
+                required: true
             )
         );
 

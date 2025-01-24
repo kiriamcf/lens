@@ -68,8 +68,8 @@ final readonly class Lens
     {
         $logs->each(function (Log $log) {
             $this->output->writeln("<info>Warning in file: <comment>{$log->path()}</comment> (Line: {$log->line()})</info>");
-            $this->output->writeln("<info> - Element: </info> <comment>{$log->element()}</comment>");
-            $this->output->writeln('<info> - Missing attributes: </info> <comment>'.implode(', ', $log->attributes()).'</comment>');
+            $this->output->writeln("<info> - Element: </info><comment>{$log->element()}</comment>");
+            $this->output->writeln('<info> - Missing attributes: </info><comment>'.implode(', ', $log->attributes()).'</comment>');
             $this->output->writeln('');
         });
     }
