@@ -26,4 +26,12 @@ class Input implements HtmlElement
     {
         return ['type'];
     }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['value', 'autocomplete'];
+    }
 }

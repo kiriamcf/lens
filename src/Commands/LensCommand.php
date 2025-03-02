@@ -3,11 +3,13 @@
 namespace Kiriamcf\Lens\Commands;
 
 use Illuminate\Console\Command;
+use Kiriamcf\Lens\Enums\Depth;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Lens;
 
 use function Laravel\Prompts\info;
 use function Laravel\Prompts\multiselect;
+use function Laravel\Prompts\select;
 
 class LensCommand extends Command
 {
@@ -26,17 +28,16 @@ class LensCommand extends Command
             )
         );
 
-        $lens = new Lens(output: $this->output, extensions: $extensions);
+        $depth = Depth::from(
+            select(
+                label: 'What depth would you like to apply?',
+                options: Depth::commandArray(),
+                default: Depth::SHALLOW->value,
+                required: true
+            )
+        );
 
-        $lens->handle();
-
-        // Ask if they want to fix the issues
-
-        // Fix the issues
-
-        // Show results
-
-        info('All files containing the selected extensions have been analyzed.');
+        (new Lens($extensions, $depth))->handle();
 
         return self::SUCCESS;
     }

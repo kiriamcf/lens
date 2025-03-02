@@ -16,7 +16,8 @@ final readonly class Log
         private string $path,
         private int $line,
         private string $element,
-        private array $attributes,
+        private array $missingAttributes,
+        private array $recommendedAttributes
     ) {}
 
     /**
@@ -46,8 +47,16 @@ final readonly class Log
     /**
      * Get the attributes that have the issue.
      */
-    public function attributes(): array
+    public function missingAttributes(): array
     {
-        return $this->attributes;
+        return $this->missingAttributes;
+    }
+
+    /**
+     * Get the attributes that have the issue.
+     */
+    public function recommendedAttributes(): array
+    {
+        return $this->recommendedAttributes;
     }
 }

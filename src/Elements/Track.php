@@ -26,4 +26,12 @@ class Track implements HtmlElement
     {
         return ['src', 'kind'];
     }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['default'];
+    }
 }

@@ -24,6 +24,14 @@ class Source implements HtmlElement
      */
     public static function neededAttributes(): array
     {
-        return ['src', 'type'];
+        return ['src'];
+    }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['type'];
     }
 }

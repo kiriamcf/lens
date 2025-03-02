@@ -18,4 +18,9 @@ interface HtmlElement
      * Return the needed attributes for this field.
      */
     public static function neededAttributes(): array;
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array;
 }

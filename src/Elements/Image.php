@@ -26,4 +26,12 @@ class Image implements HtmlElement
     {
         return ['src', 'alt'];
     }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['loading'];
+    }
 }

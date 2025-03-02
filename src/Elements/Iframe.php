@@ -26,4 +26,12 @@ class Iframe implements HtmlElement
     {
         return ['src'];
     }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['sandbox', 'loading'];
+    }
 }

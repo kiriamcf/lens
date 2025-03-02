@@ -26,4 +26,12 @@ class Anchor implements HtmlElement
     {
         return ['href'];
     }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['target'];
+    }
 }

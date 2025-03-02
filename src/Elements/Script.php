@@ -24,6 +24,14 @@ class Script implements HtmlElement
      */
     public static function neededAttributes(): array
     {
-        return ['type'];
+        return [];
+    }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['defer', 'async', 'type'];
     }
 }

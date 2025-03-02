@@ -26,4 +26,12 @@ class Link implements HtmlElement
     {
         return ['href', 'rel'];
     }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
+        return ['type'];
+    }
 }

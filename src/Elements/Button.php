@@ -24,6 +24,14 @@ class Button implements HtmlElement
      */
     public static function neededAttributes(): array
     {
+        return [];
+    }
+
+    /**
+     * Return the attributes added by default for this field.
+     */
+    public static function defaultAttributes(): array
+    {
         return ['type'];
     }
 }
