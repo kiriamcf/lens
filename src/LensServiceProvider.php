@@ -29,8 +29,8 @@ final class LensServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->singleton(
-            Displayer::class, 
-            fn () => new Displayer(new ConsoleOutput())
+            Displayer::class,
+            fn () => new Displayer(new ConsoleOutput)
         );
     }
 }

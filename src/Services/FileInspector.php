@@ -91,13 +91,13 @@ final class FileInspector
     private function logMissingAttributes(DOMElement $node, string $elementClass): void
     {
         $required = $this->getMissingAttributes(
-            node: $node, 
+            node: $node,
             attributes: collect($elementClass::neededAttributes())
         );
 
         $recommended = $this->depth->value >= Depth::DEEP->value
             ? $this->getMissingAttributes(
-                node: $node, 
+                node: $node,
                 attributes: collect($elementClass::defaultAttributes())
             )
             : collect();
@@ -120,10 +120,9 @@ final class FileInspector
      */
     private function getMissingAttributes(DOMElement $node, Collection $attributes): Collection
     {
-        return $attributes->reject(fn (string $attribute) => 
-            collect(AttributeFormat::cases())->contains(
-                fn (AttributeFormat $format) => $node->hasAttribute(str_replace('{attribute}', $attribute, $format->toHtml()))
-            )
+        return $attributes->reject(fn (string $attribute) => collect(AttributeFormat::cases())->contains(
+            fn (AttributeFormat $format) => $node->hasAttribute(str_replace('{attribute}', $attribute, $format->toHtml()))
+        )
         );
     }
 }

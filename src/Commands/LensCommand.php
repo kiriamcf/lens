@@ -7,7 +7,6 @@ use Kiriamcf\Lens\Enums\Depth;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Lens;
 
-use function Laravel\Prompts\info;
 use function Laravel\Prompts\multiselect;
 use function Laravel\Prompts\select;
 

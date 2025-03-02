@@ -18,8 +18,8 @@ final readonly class Lens
 {
     /**
      * Creates a new Lens instance.
-     * 
-     * @param $extensions array<FileExtension>
+     *
+     * @param  $extensions  array<FileExtension>
      */
     public function __construct(
         private array $extensions,
