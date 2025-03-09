@@ -2,8 +2,8 @@
 
 namespace Kiriamcf\Lens\Commands;
 
-use InvalidArgumentException;
 use Illuminate\Console\Command;
+use InvalidArgumentException;
 use Kiriamcf\Lens\Enums\Depth;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Lens;
@@ -30,9 +30,10 @@ class LensCommand extends Command
         return self::SUCCESS;
     }
 
-    /** 
-     * @throws InvalidArgumentException
+    /**
      * @return array<FileExtension>
+     *
+     * @throws InvalidArgumentException
      */
     private function getFileExtensions(): array
     {
@@ -57,7 +58,7 @@ class LensCommand extends Command
         );
     }
 
-    /** 
+    /**
      * @throws InvalidArgumentException
      */
     private function getDepth(): Depth
