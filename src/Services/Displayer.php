@@ -28,7 +28,8 @@ final class Displayer
 
     /**
      * Dump the logs.
-     * @param Collection<Log> $logs
+     *
+     * @param  Collection<Log>  $logs
      */
     public function dump(Collection $logs): void
     {

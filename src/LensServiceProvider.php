@@ -30,10 +30,10 @@ final class LensServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         $this->app->singleton(Displayer::class, function ($app) {
-            $output = app()->environment('testing') 
-                ? new BufferedOutput() 
-                : new ConsoleOutput();
-        
+            $output = app()->environment('testing')
+                ? new BufferedOutput
+                : new ConsoleOutput;
+
             return new Displayer($output);
         });
     }

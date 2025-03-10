@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Kiriamcf\Lens\Tests\Services;
 
-use Kiriamcf\Lens\Tests\TestCase;
 use Kiriamcf\Lens\Services\Displayer;
+use Kiriamcf\Lens\Tests\TestCase;
 use Kiriamcf\Lens\ValueObjects\Log;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -28,10 +28,10 @@ final class DisplayerTest extends TestCase
         $displayer = app(Displayer::class);
 
         $log = new Log(
-            path: '/path/to/file', 
-            line: 1, 
-            element: 'element', 
-            missingAttributes: ['attribute'], 
+            path: '/path/to/file',
+            line: 1,
+            element: 'element',
+            missingAttributes: ['attribute'],
             recommendedAttributes: ['attribute']
         );
 
@@ -45,10 +45,10 @@ final class DisplayerTest extends TestCase
         $displayer = app(Displayer::class);
 
         $log = new Log(
-            path: '/path/to/file', 
-            line: 1, 
-            element: 'element', 
-            missingAttributes: ['attribute'], 
+            path: '/path/to/file',
+            line: 1,
+            element: 'element',
+            missingAttributes: ['attribute'],
             recommendedAttributes: ['attribute']
         );
 
@@ -62,10 +62,10 @@ final class DisplayerTest extends TestCase
         $displayer = app(Displayer::class);
 
         $log = new Log(
-            path: '/path/to/file', 
-            line: 1, 
-            element: 'element', 
-            missingAttributes: ['attribute'], 
+            path: '/path/to/file',
+            line: 1,
+            element: 'element',
+            missingAttributes: ['attribute'],
             recommendedAttributes: ['attribute']
         );
 
@@ -79,10 +79,10 @@ final class DisplayerTest extends TestCase
         $displayer = app(Displayer::class);
 
         $log = new Log(
-            path: '/path/to/file', 
-            line: 1, 
-            element: 'element', 
-            missingAttributes: ['attribute'], 
+            path: '/path/to/file',
+            line: 1,
+            element: 'element',
+            missingAttributes: ['attribute'],
             recommendedAttributes: ['attribute']
         );
 
@@ -96,10 +96,10 @@ final class DisplayerTest extends TestCase
         $displayer = app(Displayer::class);
 
         $log = new Log(
-            path: '/path/to/file', 
-            line: 1, 
-            element: 'element', 
-            missingAttributes: ['attribute1, attribute2'], 
+            path: '/path/to/file',
+            line: 1,
+            element: 'element',
+            missingAttributes: ['attribute1, attribute2'],
             recommendedAttributes: ['attribute3, attribute4']
         );
 
@@ -113,10 +113,10 @@ final class DisplayerTest extends TestCase
         $displayer = app(Displayer::class);
 
         $log = new Log(
-            path: '/path/to/file', 
-            line: 1, 
-            element: 'element', 
-            missingAttributes: ['attribute1, attribute2'], 
+            path: '/path/to/file',
+            line: 1,
+            element: 'element',
+            missingAttributes: ['attribute1, attribute2'],
             recommendedAttributes: ['attribute3, attribute4']
         );
 
