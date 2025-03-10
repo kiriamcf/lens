@@ -19,7 +19,16 @@ final class Displayer
     public function __construct(private OutputInterface $output) {}
 
     /**
+     * Get the output.
+     */
+    public function output(): OutputInterface
+    {
+        return $this->output;
+    }
+
+    /**
      * Dump the logs.
+     * @param Collection<Log> $logs
      */
     public function dump(Collection $logs): void
     {
