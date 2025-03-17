@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Kiriamcf\Lens\Tests\Services;
 
 use Kiriamcf\Lens\Enums\Depth;
-use Kiriamcf\Lens\Tests\TestCase;
 use Kiriamcf\Lens\Services\FileInspector;
+use Kiriamcf\Lens\Tests\TestCase;
 use Kiriamcf\Lens\ValueObjects\Log;
 use SplFileInfo;
 
@@ -14,7 +14,7 @@ final class FileInspectorTest extends TestCase
 {
     public function test_it_can_load_file_contents(): void
     {
-        $file = new SplFileInfo(__DIR__ . '/../Fixtures/dummy.html');
+        $file = new SplFileInfo(__DIR__.'/../Fixtures/dummy.html');
 
         $inspector = new FileInspector($file, Depth::SHALLOW);
 
@@ -23,7 +23,7 @@ final class FileInspectorTest extends TestCase
 
     public function test_it_checks_for_html_elements(): void
     {
-        $file = new SplFileInfo(__DIR__ . '/../Fixtures/dummy.html');
+        $file = new SplFileInfo(__DIR__.'/../Fixtures/dummy.html');
 
         $inspector = new FileInspector($file, Depth::SHALLOW);
 
@@ -31,12 +31,12 @@ final class FileInspectorTest extends TestCase
 
         $logs = $inspector->getLogs();
 
-        $this->assertNotEmpty($logs);    
+        $this->assertNotEmpty($logs);
     }
 
-    public function test_logs_generated_are_valueObjects(): void
+    public function test_logs_generated_are_value_objects(): void
     {
-        $file = new SplFileInfo(__DIR__ . '/../Fixtures/dummy.html');
+        $file = new SplFileInfo(__DIR__.'/../Fixtures/dummy.html');
 
         $inspector = new FileInspector($file, Depth::SHALLOW);
 
