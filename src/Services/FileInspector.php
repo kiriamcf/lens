@@ -54,6 +54,14 @@ final class FileInspector
     }
 
     /**
+     * Get the DOM document from the file.
+     */
+    public function getDom(): DOMDocument
+    {
+        return $this->dom;
+    }
+
+    /**
      * Load the contents of the file into the DOM.
      */
     private function loadContents(): void

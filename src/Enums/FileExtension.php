@@ -15,6 +15,7 @@ enum FileExtension: string
     case VUE = '.vue';
     case JSX = '.jsx';
     case TSX = '.tsx';
+    case HTML = '.html';
 
     /**
      * Returns an array of all the available extensions for the user to choose from.
@@ -26,6 +27,7 @@ enum FileExtension: string
             self::VUE->value => 'Vue',
             self::JSX->value => 'JSX',
             self::TSX->value => 'TSX',
+            self::HTML->value => 'HTML',
         ];
     }
 
@@ -39,6 +41,7 @@ enum FileExtension: string
             'vue', 'Vue', 'VUE' => self::VUE,
             'jsx', 'Jsx', 'JSX' => self::JSX,
             'tsx', 'Tsx', 'TSX' => self::TSX,
+            'html', 'Html', 'HTML' => self::HTML,
             default => throw new InvalidArgumentException("Invalid file extension: {$extension}"),
         };
     }
