@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Kiriamcf\Lens\Tests\Console;
 
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use InvalidArgumentException;
 use Kiriamcf\Lens\Enums\Depth;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Tests\TestCase;
-use Illuminate\Console\Command;
 
 final class CommandTest extends TestCase
 {

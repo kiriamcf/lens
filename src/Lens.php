@@ -24,7 +24,7 @@ final readonly class Lens
     public function __construct(
         private array $extensions,
         private Depth $depth,
-        private ?string $folder = null, 
+        private ?string $folder = null,
     ) {}
 
     /**

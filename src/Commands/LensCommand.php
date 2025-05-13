@@ -48,7 +48,7 @@ class LensCommand extends Command
         if ($this->option('default')) {
             return config('lens.default.extensions', [FileExtension::BLADE]);
         }
-        
+
         return $this->askForFileExtensions();
     }
 
@@ -76,7 +76,7 @@ class LensCommand extends Command
         if ($this->option('default')) {
             return config('lens.default.depth', Depth::SHALLOW);
         }
-        
+
         return $this->askForDepth();
     }
 

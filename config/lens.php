@@ -1,7 +1,7 @@
 <?php
 
-use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Enums\Depth;
+use Kiriamcf\Lens\Enums\FileExtension;
 
 return [
     'folders' => [
@@ -12,5 +12,5 @@ return [
             FileExtension::BLADE,
         ],
         'depth' => Depth::SHALLOW,
-    ]
+    ],
 ];

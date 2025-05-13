@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Kiriamcf\Lens\Tests\Elements;
 
-use Kiriamcf\Lens\Tests\TestCase;
 use Illuminate\Console\Command;
+use Kiriamcf\Lens\Tests\TestCase;
 
 final class CommandTest extends TestCase
 {
