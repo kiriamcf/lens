@@ -15,9 +15,11 @@ class LensCommand extends Command
 {
     public $signature = 'lens 
         {--extensions= : Comma-separated file extensions}
-        {--depth= : Inspection depth}';
+        {--depth= : Inspection depth}
+        {--default= : Default configurations, keep all specified options through the cli}
+        {--folder= : Specify a folder to inspect}';
 
-    public $description = 'My command';
+    public $description = 'Execute the lens inspection';
 
     public function handle(): int
     {
@@ -25,7 +27,7 @@ class LensCommand extends Command
 
         $depth = $this->getDepth();
 
-        (new Lens($extensions, $depth))->handle();
+        (new Lens($extensions, $depth, $this->option('folder')))->handle();
 
         return self::SUCCESS;
     }
@@ -37,13 +39,17 @@ class LensCommand extends Command
      */
     private function getFileExtensions(): array
     {
-        if (is_null($this->option('extensions'))) {
-            return $this->askForFileExtensions();
+        if ($this->option('extensions')) {
+            return collect(explode(',', $this->option('extensions')))
+                ->map(fn (string $extension) => FileExtension::fromExternal($extension))
+                ->toArray();
         }
 
-        return collect(explode(',', $this->option('extensions')))
-            ->map(fn (string $extension) => FileExtension::fromExternal($extension))
-            ->toArray();
+        if ($this->option('default')) {
+            return config('lens.default.extensions', [FileExtension::BLADE]);
+        }
+        
+        return $this->askForFileExtensions();
     }
 
     private function askForFileExtensions(): array
@@ -63,11 +69,15 @@ class LensCommand extends Command
      */
     private function getDepth(): Depth
     {
-        if (is_null($this->option('depth'))) {
-            return $this->askForDepth();
+        if ($this->option('depth')) {
+            return Depth::fromExternal($this->option('depth'));
         }
 
-        return Depth::fromExternal($this->option('depth'));
+        if ($this->option('default')) {
+            return config('lens.default.depth', Depth::SHALLOW);
+        }
+        
+        return $this->askForDepth();
     }
 
     private function askForDepth(): Depth

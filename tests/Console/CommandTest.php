@@ -9,6 +9,7 @@ use InvalidArgumentException;
 use Kiriamcf\Lens\Enums\Depth;
 use Kiriamcf\Lens\Enums\FileExtension;
 use Kiriamcf\Lens\Tests\TestCase;
+use Illuminate\Console\Command;
 
 final class CommandTest extends TestCase
 {
@@ -22,13 +23,13 @@ final class CommandTest extends TestCase
         $this->artisan('lens')
             ->expectsQuestion('What file extensions would you like to inspect?', [FileExtension::BLADE->value])
             ->expectsQuestion('What depth would you like to apply?', Depth::SHALLOW->value)
-            ->assertExitCode(0);
+            ->assertExitCode(Command::SUCCESS);
     }
 
     public function test_command_can_ignore_configurations(): void
     {
         $this->artisan('lens', ['--extensions' => 'blade,vue', '--depth' => 'deep'])
-            ->assertExitCode(0);
+            ->assertExitCode(Command::SUCCESS);
     }
 
     public function test_invalid_arguments_are_detected(): void
@@ -36,6 +37,7 @@ final class CommandTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
 
         $this->artisan('lens', ['--extensions' => 'bladee'])
-            ->run();
+            ->run()
+            ->assertExitCode(Command::FAILURE);
     }
 }

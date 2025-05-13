@@ -23,7 +23,8 @@ final readonly class Lens
      */
     public function __construct(
         private array $extensions,
-        private Depth $depth
+        private Depth $depth,
+        private ?string $folder = null, 
     ) {}
 
     /**
@@ -31,8 +32,20 @@ final readonly class Lens
      */
     public function handle(): void
     {
-        collect(config('lens.folders'))
+        collect($this->iterableFolders())
             ->each(fn (string $folder) => $this->processFolder($folder));
+    }
+
+    /**
+     * Fetch the folders to be inspected.
+     */
+    private function iterableFolders(): array
+    {
+        if (isset($this->folder)) {
+            return [$this->folder];
+        }
+
+        return config('lens.folders', ['./resources/views/']);
     }
 
     /**
