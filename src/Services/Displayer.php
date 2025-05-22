@@ -13,6 +13,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 final class Displayer
 {
+    public int $dumps = 0;
+
     /**
      * Creates a new Displayer instance.
      */
@@ -34,6 +36,8 @@ final class Displayer
     public function dump(Collection $logs): void
     {
         $logs->each(fn (Log $log) => $this->dumpLog($log));
+
+        $this->dumps += $logs->count();
     }
 
     /**

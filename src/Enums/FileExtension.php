@@ -33,6 +33,8 @@ enum FileExtension: string
 
     /**
      * Returns the enum value from an external string.
+     * 
+     * @throws InvalidArgumentException
      */
     public static function fromExternal(string $extension): self
     {

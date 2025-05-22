@@ -24,28 +24,18 @@ final readonly class Lens
     public function __construct(
         private array $extensions,
         private Depth $depth,
-        private ?string $folder = null,
+        private array $folders,
     ) {}
 
     /**
      * Begin processing the files.
      */
-    public function handle(): void
+    public function handle(): int
     {
-        collect($this->iterableFolders())
+        collect($this->folders)
             ->each(fn (string $folder) => $this->processFolder($folder));
-    }
 
-    /**
-     * Fetch the folders to be inspected.
-     */
-    private function iterableFolders(): array
-    {
-        if (isset($this->folder)) {
-            return [$this->folder];
-        }
-
-        return config('lens.folders', ['./resources/views/']);
+        return app(Displayer::class)->dumps;
     }
 
     /**

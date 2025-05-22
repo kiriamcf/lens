@@ -16,20 +16,24 @@ class LensCommand extends Command
     public $signature = 'lens 
         {--extensions= : Comma-separated file extensions}
         {--depth= : Inspection depth}
-        {--default= : Default configurations, keep all specified options through the cli}
-        {--folder= : Specify a folder to inspect}';
+        {--folder= : Specify a folder to inspect}
+        {--default : Default configurations, keep all specified options through the cli}';
 
     public $description = 'Execute the lens inspection';
 
     public function handle(): int
     {
-        $extensions = $this->getFileExtensions();
+        $extensions = $this->fileExtensions();
 
-        $depth = $this->getDepth();
+        $depth = $this->depth();
 
-        (new Lens($extensions, $depth, $this->option('folder')))->handle();
+        $folders = $this->folders();
 
-        return self::SUCCESS;
+        $dumps = (new Lens($extensions, $depth, $folders))->handle();
+
+        return $dumps != 0
+            ? self::FAILURE
+            : self::SUCCESS;
     }
 
     /**
@@ -37,7 +41,7 @@ class LensCommand extends Command
      *
      * @throws InvalidArgumentException
      */
-    private function getFileExtensions(): array
+    private function fileExtensions(): array
     {
         if ($this->option('extensions')) {
             return collect(explode(',', $this->option('extensions')))
@@ -46,7 +50,9 @@ class LensCommand extends Command
         }
 
         if ($this->option('default')) {
-            return config('lens.default.extensions', [FileExtension::BLADE]);
+            return collect(config('lens.extensions'))
+                ->map(fn (string $extension) => FileExtension::fromExternal($extension))
+                ->toArray();
         }
 
         return $this->askForFileExtensions();
@@ -67,14 +73,14 @@ class LensCommand extends Command
     /**
      * @throws InvalidArgumentException
      */
-    private function getDepth(): Depth
+    private function depth(): Depth
     {
         if ($this->option('depth')) {
             return Depth::fromExternal($this->option('depth'));
         }
 
         if ($this->option('default')) {
-            return config('lens.default.depth', Depth::SHALLOW);
+            return Depth::fromExternal(config('lens.depth'));
         }
 
         return $this->askForDepth();
@@ -90,5 +96,14 @@ class LensCommand extends Command
                 required: true
             )
         );
+    }
+
+    private function folders(): array
+    {
+        if ($this->option('folder')) {
+            return [$this->option('folder')];
+        }
+
+        return config('lens.folders');
     }
 }

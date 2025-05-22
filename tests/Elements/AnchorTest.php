@@ -12,6 +12,6 @@ final class CommandTest extends TestCase
     public function test_html_detection_works(): void
     {
         $this->artisan('lens', ['--default' => 'true', '--extensions' => 'html', '--folder' => './tests/Fixtures/Anchor'])
-            ->assertExitCode(Command::SUCCESS);
+            ->assertExitCode(Command::FAILURE);
     }
 }
