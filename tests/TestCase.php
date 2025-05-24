@@ -4,8 +4,8 @@ namespace Kiriamcf\Lens\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Kiriamcf\Lens\LensServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Kiriamcf\Lens\Services\Displayer;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

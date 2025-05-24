@@ -13,14 +13,14 @@ final class FormTest extends TestCase
     {
         $this->artisan('lens', ['--default' => 'true', '--extensions' => 'html', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-        
+
         $this->assertEquals(2, $this->displayer->dumps);
 
         $this->displayer->reset();
 
         $this->artisan('lens', ['--depth' => 'deep', '--extensions' => 'html', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-    
+
         $this->assertEquals(4, $this->displayer->dumps);
     }
 
@@ -28,14 +28,14 @@ final class FormTest extends TestCase
     {
         $this->artisan('lens', ['--default' => 'true', '--extensions' => 'blade', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-        
+
         $this->assertEquals(2, $this->displayer->dumps);
 
         $this->displayer->reset();
 
         $this->artisan('lens', ['--depth' => 'deep', '--extensions' => 'html', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-    
+
         $this->assertEquals(4, $this->displayer->dumps);
     }
 
@@ -43,14 +43,14 @@ final class FormTest extends TestCase
     {
         $this->artisan('lens', ['--default' => 'true', '--extensions' => 'jsx', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-        
+
         $this->assertEquals(2, $this->displayer->dumps);
 
         $this->displayer->reset();
 
         $this->artisan('lens', ['--depth' => 'deep', '--extensions' => 'html', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-    
+
         $this->assertEquals(4, $this->displayer->dumps);
     }
 
@@ -58,14 +58,14 @@ final class FormTest extends TestCase
     {
         $this->artisan('lens', ['--default' => 'true', '--extensions' => 'tsx', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-        
+
         $this->assertEquals(2, $this->displayer->dumps);
 
         $this->displayer->reset();
 
         $this->artisan('lens', ['--depth' => 'deep', '--extensions' => 'html', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-    
+
         $this->assertEquals(4, $this->displayer->dumps);
     }
 
@@ -73,14 +73,14 @@ final class FormTest extends TestCase
     {
         $this->artisan('lens', ['--default' => 'true', '--extensions' => 'vue', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-        
+
         $this->assertEquals(2, $this->displayer->dumps);
 
         $this->displayer->reset();
 
         $this->artisan('lens', ['--depth' => 'deep', '--extensions' => 'html', '--folder' => './tests/Fixtures/Form'])
             ->assertExitCode(Command::FAILURE);
-    
+
         $this->assertEquals(4, $this->displayer->dumps);
     }
 }
