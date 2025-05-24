@@ -2,7 +2,7 @@ import React from "react";
 
 const AnchorComponent = ({ url = "https://example.com", target = "_blank" }) => {
   return (
-    <div>
+    <>
       {/* ✅ Good: Has both href and target */}
       <a href={url} target={target}>Valid Anchor</a>
 
@@ -14,7 +14,7 @@ const AnchorComponent = ({ url = "https://example.com", target = "_blank" }) => 
 
       {/* ❌ Bad: No attributes */}
       <a>No Attributes</a>
-    </div>
+    </>
   );
 };
 

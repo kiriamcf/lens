@@ -10,7 +10,7 @@ const AnchorComponent: React.FC<AnchorProps> = ({
   target = "_blank",
 }) => {
   return (
-    <div>
+    <>
       {/* ✅ Good: Has both href and target */}
       <a href={url} target={target}>Valid Anchor</a>
 
@@ -22,7 +22,7 @@ const AnchorComponent: React.FC<AnchorProps> = ({
 
       {/* ❌ Bad: No attributes */}
       <a>No Attributes</a>
-    </div>
+    </>
   );
 };
 

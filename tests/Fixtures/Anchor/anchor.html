@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body x-data="{url: 'https://example.com', target: '_blank'}">
     <!-- ✅ Good: Has both href and target -->
-    <a href="https://example.com" target="_blank">Valid Anchor</a>
+    <a x-bind:href="url" x-bind:target="target">
+        Valid Anchor
+    </a>
 
     <!-- ❌ Bad: Missing href -->
-    <a target="_blank">Missing Href</a>
+    <a x-bind:target="target">
+        Missing Href
+    </a>
 
     <!-- ⚠️ Bad: Missing target -->
-    <a href="https://example.com">Missing Target</a>
+    <a x-bind:href="url">
+        Missing Target
+    </a>
 
     <!-- ❌ Bad: No attributes -->
     <a>No Attributes</a>

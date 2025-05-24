@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body x-data="{action: '#', method: 'POST', enctype: 'application/x-www-form-urlencoded'}">
+    <!-- ✅ Good: Specifies action, method and enctype -->
+    <form x-bind:action="action" x-bind:method="method" x-bind:enctype="enctype">...</form>
+
+    <!-- ❌ Bad: Missing action -->
+    <form x-bind:method="method" x-bind:enctype="enctype">...</form>
+
+    <!-- ⚠️ Bad: Missing method -->
+    <form x-bind:action="action" x-bind:enctype="enctype">...</form>
+
+    <!-- ⚠️ Bad: Missing enctype -->
+    <form x-bind:action="action" x-bind:method="method">...</form>
+
+    <!-- ❌ Bad: No attributes -->
+    <form></form>
+</body>
+</html>

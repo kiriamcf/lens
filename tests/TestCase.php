@@ -5,9 +5,12 @@ namespace Kiriamcf\Lens\Tests;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Kiriamcf\Lens\LensServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Kiriamcf\Lens\Services\Displayer;
 
 class TestCase extends Orchestra
 {
+    public Displayer $displayer;
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -15,6 +18,8 @@ class TestCase extends Orchestra
         Factory::guessFactoryNamesUsing(
             fn (string $modelName) => 'Kiriamcf\\Lens\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
+
+        $this->displayer = app(Displayer::class);
     }
 
     protected function getPackageProviders($app)

@@ -1,12 +1,12 @@
 <template>
     <!-- ✅ Good: Has both href and target -->
-    <a :href="url" :target="target">Valid Anchor</a>
+    <a v-bind:href="url" v-bind:target="target">Valid Anchor</a>
   
     <!-- ❌ Bad: Missing href -->
-    <a :target="target">Missing Href</a>
+    <a v-bind:target="target">Missing Href</a>
 
     <!-- ⚠️ Bad: Missing target -->
-    <a :href="url">Missing Target</a>
+    <a v-bind:href="url">Missing Target</a>
   
     <!-- ❌ Bad: No attributes -->
     <a>No Attributes</a>

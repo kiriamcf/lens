@@ -21,6 +21,14 @@ final class Displayer
     public function __construct(private OutputInterface $output) {}
 
     /**
+     * Reset the number of dumps.
+     */
+    public function reset(): void
+    {
+        $this->dumps = 0;
+    }
+
+    /**
      * Get the output.
      */
     public function output(): OutputInterface
