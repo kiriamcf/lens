@@ -1,84 +1,128 @@
-# This is my package lens
+# Lens
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/kiriamcf/lens.svg?style=flat-square)](https://packagist.org/packages/kiriamcf/lens)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/kiriamcf/lens/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/kiriamcf/lens/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/kiriamcf/lens/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/kiriamcf/lens/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/kiriamcf/lens.svg?style=flat-square)](https://packagist.org/packages/kiriamcf/lens)
+Lens is a developer-focused inspection tool that scans your view files and detects missing or recommended HTML attributes.
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+It helps you catch common HTML issues early by analyzing Blade, Vue, JSX, TSX, and HTML files and reporting problems directly in the console.
 
-## Support us
+---
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/lens.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/lens)
+## Features
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+- Inspect multiple template formats:
+  - Blade (`.blade.php`)
+  - Vue (`.vue`)
+  - React JSX / TSX (`.jsx`, `.tsx`)
+  - Plain HTML (`.html`)
+- Two inspection depths:
+  - **Shallow** — required attributes only
+  - **Deep** — required + best-practice attributes
+- Built-in knowledge of common HTML elements (`a`, `form`, `img`, `button`, etc.)
+- Interactive CLI prompts
+- Configurable defaults
+- CI-friendly (non-zero exit code when issues are found)
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+---
 
 ## Installation
-
-You can install the package via composer:
 
 ```bash
 composer require kiriamcf/lens
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="lens-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
+## Publish configuration
 
 ```bash
 php artisan vendor:publish --tag="lens-config"
 ```
 
-This is the contents of the published config file:
+## Configuration
 
-```php
+Default values in case they are not provided in the command.
+
+```
 return [
+    'folders' => ['./resources/views/'],
+    'extensions' => ['blade'],
+    'depth' => 'shallow',
 ];
 ```
 
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="lens-views"
-```
+| Key          | Description                                                  |
+| ------------ | ------------------------------------------------------------ |
+| `folders`    | Default folders to inspect                                   |
+| `extensions` | File types to include (`blade`, `vue`, `jsx`, `tsx`, `html`) |
+| `depth`      | Inspection level: `shallow` or `deep`                        |
 
 ## Usage
 
-```php
-$lens = new Kiriamcf\Lens();
-echo $lens->echoPhrase('Hello, Kiriamcf!');
 ```
+php artisan lens
+```
+
+### Command options
+
+```
+php artisan lens \
+  --extensions=blade,vue \
+  --depth=deep \
+  --folder=resources/views
+```
+
+| Option         | Description                        |
+| -------------- | ---------------------------------- |
+| `--extensions` | Comma-separated list of extensions |
+| `--depth`      | `shallow` or `deep`                |
+| `--folder`     | Folder to inspect                  |
+| `--default`    | Use config values without prompts  |
+
+### Example Output
+
+```
+Warning in file: resources/views/example.blade.php (Line: 12)
+ - Element: a
+ - Missing attributes: href
+ - Recommended attributes: target
+```
+
+Exit codes:
+- 0 — no issues found
+- 1 — warnings detected
+
+## What Lens Checks
+
+| Element     | Required Attributes     | Recommended (Deep)          |
+|-------------|-------------------------|-----------------------------|
+| `<a>`       | `href`                  | `target`                    |
+| `<button>`  | —                       | `type`                      |
+| `<form>`    | `action`                | `method`, `enctype`         |
+| `<iframe>`  | `src`                   | `sandbox`, `loading`        |
+| `<img>`     | `src`, `alt`            | `loading`                  |
+| `<input>`   | `type`                  | `value`, `autocomplete`     |
+| `<link>`    | `href`, `rel`           | `type`                      |
+| `<script>`  | —                       | `defer`, `async`, `type`    |
+| `<source>`  | `src`                   | `type`                      |
+| `<track>`   | `src`, `kind`           | `default`                  |
+
+Supports Blade, Vue, JSX, TSX, and HTML attribute bindings.
 
 ## Testing
 
-```bash
+Run the test suite:
+
+```
 composer test
 ```
 
-## Changelog
+Run static analysis:
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+```
+composer analyse
+```
 
 ## Contributing
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Contributions are very welcome, but please ensure:
 
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [kiriamcf](https://github.com/kiriamcf)
-- [All Contributors](../../contributors)
-
-## License
-
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+- Tests are added or updated where applicable
+- Code passes formatting and static analysis
+- Changes are documented when necessary
